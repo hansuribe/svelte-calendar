@@ -2,8 +2,8 @@ let days = [
     {
         name: "sunday",
         hours: {
-            7: "Workout",
-            8: "",
+            7: "This is a long task",
+            8: "This is a longer task, which is longer than the former task",
             9: "",
             10: "",
             11: "",
