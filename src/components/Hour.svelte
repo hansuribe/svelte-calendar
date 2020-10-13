@@ -1,7 +1,7 @@
 <script>
     export let hour = 1,
         desc = "",
-        bg = "dodgerblue",
+        bg = "whitesmoke",
         onclick = () => "";
 </script>
 

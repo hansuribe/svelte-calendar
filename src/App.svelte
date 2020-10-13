@@ -5,7 +5,7 @@
 </script>
 
 <main>
-	<Modify />
+	<Modify /> 
 	<Week/>
 </main>
 

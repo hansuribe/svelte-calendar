@@ -2,6 +2,7 @@
   import Hour from "./Hour.svelte";
   import { modify, data } from "../stores.js";
 
+  // Exit Modify modal when clicking outside main div
   function handleClick(e) {
     const classes = Object.values(e.target.classList);
     if (classes.includes("modify-container")) {
@@ -9,6 +10,8 @@
     }
   }
 
+  // Modify doesn't appear when $modify is empty,
+  // So this is to close the modal basically.
   function exitModify() {
     $modify = "";
   }
@@ -20,6 +23,7 @@
       $modify.desc = e.target.value;
     }
   }
+
   function handleApply() {
     let previousData = JSON.parse(window.localStorage.data);
     let updatedData = previousData.filter((el) => {

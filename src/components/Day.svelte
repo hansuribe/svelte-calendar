@@ -3,6 +3,9 @@
   import { modify } from "../stores.js";
   export let data;
 
+  // Called from an 'Hour.svelte' component.
+  // We stop here before activating 'Modify.svelte'
+  // so we can add the day (for database managment)
   function hourHandler(toModify) {
     $modify = { day: data.name, ...toModify };
   }
