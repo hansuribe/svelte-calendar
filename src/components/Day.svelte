@@ -18,7 +18,7 @@
     }
 </style>
 
-<div class="day">
+<div class="day" id={data.name.toUpperCase()}>
     <h1>{data.name.toUpperCase()}</h1>
     {#each Object.keys(data.hours) as hour}
         <Hour {hour} desc={data.hours[hour]} onclick={hourHandler} />
