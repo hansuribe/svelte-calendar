@@ -24,7 +24,7 @@
     // window.localStorage.removeItem("data");
     if (!window.localStorage.data) window.localStorage.data = JSON.stringify(days);
     days = JSON.parse(window.localStorage.data);
-    window.location.hash = `${_DAYS[new Date().getDay()]}`;
+    window.location.hash = `${_DAYS[new Date().getDay() + 1]}`;
 </script>
 
 <style>
