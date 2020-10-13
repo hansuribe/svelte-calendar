@@ -27,6 +27,6 @@
 <div class="day" id={data.name.toUpperCase()}>
   <h1>{data.name.toUpperCase()}</h1>
   {#each Object.keys(data.hours) as hour}
-    <Hour {hour} desc={data.hours[hour]} onclick={hourHandler} />
+    <Hour {hour} desc={data.hours[hour].desc} bg={data.hours[hour].bg} onclick={hourHandler} />
   {/each}
 </div>

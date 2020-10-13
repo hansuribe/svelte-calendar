@@ -64,7 +64,7 @@
   <div class="modify-container" on:click={handleClick}>
     <div class="modify">
       <div class="preview">
-        <Hour hour={$modify.hour} desc={$modify.desc} />
+        <Hour hour={$modify.hour} desc={$modify.desc} bg={$modify.bg}/>
       </div>
       <div class="editor">
         <input

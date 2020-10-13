@@ -1,7 +1,7 @@
 <script>
     export let hour = 1,
         desc = "",
-        bg = "violet",
+        bg = "dodgerblue",
         onclick = () => "";
 </script>
 
@@ -20,8 +20,8 @@
     }
     
     .hour-container:hover {
-        border-bottom: none;
         transition: 350ms ease-in-out;
+        z-index: 1;
     }
 
     .hour-container:hover::after {
@@ -69,7 +69,7 @@
 <div
     class="hour-container"
     style="--bg:{bg}"
-    on:click={onclick({ hour, desc })}>
+    on:click={onclick({ hour, desc, bg })}>
     <p class="hour-time">{hour}</p>
     <h3 class="hour-desc">{desc}</h3>
 </div>
