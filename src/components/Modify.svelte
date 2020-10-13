@@ -13,17 +13,27 @@
     $modify = "";
   }
 
+  function inputHandler(e) {
+    if (e.key === "Enter") {
+      handleApply();
+    } else {
+      $modify.desc = e.target.value;
+    }
+  }
   function handleApply() {
     let previousData = JSON.parse(window.localStorage.data);
     let updatedData = previousData.filter((el) => {
       if (el.name === $modify.day) {
-        el.hours[$modify.hour] = $modify.desc;
+        el.hours[$modify.hour].desc = $modify.desc;
       }
       return el;
     });
     window.localStorage.data = JSON.stringify(updatedData);
     $data = updatedData;
+    exitModify();
   }
+
+  document.onkeyup = (e) => e.key === "Escape" && exitModify();
 </script>
 
 <style>
@@ -64,13 +74,13 @@
   <div class="modify-container" on:click={handleClick}>
     <div class="modify">
       <div class="preview">
-        <Hour hour={$modify.hour} desc={$modify.desc} bg={$modify.bg}/>
+        <Hour hour={$modify.hour} desc={$modify.desc} bg={$modify.bg} />
       </div>
       <div class="editor">
         <input
           value={$modify.desc}
           placeholder="Enter task"
-          on:keyup={(e) => ($modify.desc = e.target.value)} />
+          on:keyup={inputHandler} />
 
         <button on:click={handleApply}>Apply</button>
       </div>
