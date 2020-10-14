@@ -33,6 +33,7 @@
         flex-direction: row;
         height: auto;
         width: 100vw;
+        margin-top: 5em;
     }
 
     @media only screen and (max-width: 1024px) {

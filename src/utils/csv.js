@@ -1,0 +1,31 @@
+const data = JSON.parse(localStorage.getItem("data"));
+const columnDelimiter = ',';
+const lineDelimiter = '\n';
+
+let days = [];
+
+// [{name, hours: { desc, bg }}]
+
+export default function exportToCsv() {
+    console.log(data);
+    if (data == null || !data.length)
+        return null;
+    
+    data.forEach((day) => createDayData(day));
+}
+
+function createDayData(day) {
+    const hoursKeys = Object.keys(day.hours);
+    let result = '';
+
+    result += ['hour','desc'].join(columnDelimiter);
+    result += lineDelimiter;
+
+    hoursKeys.forEach((hour) => {
+        result += [hour, day.hours[hour].desc].join(columnDelimiter);
+        result += lineDelimiter;
+    })
+
+    days.push(result);
+    console.log(result);
+}
