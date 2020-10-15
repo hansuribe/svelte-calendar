@@ -24,11 +24,20 @@
     }
   }
 
+  function uriHandler(e) {
+    if (e.key === "Enter") {
+      handleApply();
+    } else {
+      $modify.uri = e.target.value;
+    }
+  }
+
   function handleApply() {
     let previousData = JSON.parse(window.localStorage.data);
     let updatedData = previousData.filter((el) => {
       if (el.name === $modify.day) {
         el.hours[$modify.hour].desc = $modify.desc;
+        el.hours[$modify.hour].uri = $modify.uri;
       }
       return el;
     });
@@ -45,9 +54,8 @@
     position: absolute;
     z-index: 99;
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     overflow: hidden;
-    background: rgba(0, 0, 50, 0.75);
   }
 
   .modify {
@@ -65,13 +73,19 @@
     flex-direction: column;
   }
 
-  .preview {
-    flex: 1;
+  .editor {
+    margin: 1em auto;
+    display: flex;
+    flex-direction: column;
+    width: 90%;
   }
 
-  .editor {
-    margin-top: 1em;
+  button {
+    width: 50%;
+    margin: auto;
+    cursor: pointer;
   }
+
 </style>
 
 {#if $modify}
@@ -85,7 +99,10 @@
           value={$modify.desc}
           placeholder="Enter task"
           on:keyup={inputHandler} />
-
+        <input
+          value={$modify.uri}
+          placeholder="Enter URI"
+          on:keyup={uriHandler} />
         <button on:click={handleApply}>Apply</button>
       </div>
     </div>
