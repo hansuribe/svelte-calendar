@@ -7,6 +7,13 @@
 
   import Toast from "./Toast.svelte";
   $: hover = false;
+
+  function clickHandler(e) {
+    if (e.target.classList.contains("hour-container")) {
+      window.scrollTo(0, 0);
+      onclick({ hour, desc, bg, uri });
+    }
+  }
 </script>
 
 <style>
@@ -77,12 +84,7 @@
   style="--bg:{bg}"
   on:mouseenter={() => (hover = true)}
   on:mouseleave={() => (hover = false)}
-  on:click={() => {
-    if (!hover) {
-      window.scrollTo(0, 0);
-      onclick({ hour, desc, bg, uri });
-    }
-  }}>
+  on:click={clickHandler}>
   <Toast active={hover} content={uri} />
   <p class="hour-time">{hour}</p>
   <h3 class="hour-desc">{desc}</h3>
