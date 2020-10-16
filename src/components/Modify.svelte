@@ -1,6 +1,7 @@
 <script>
   import Hour from "./Hour.svelte";
   import { modify, data } from "../stores.js";
+  import { _COLORS } from "../consts.js";
 
   // Exit Modify modal when clicking outside main div
   function handleClick(e) {
@@ -38,12 +39,17 @@
       if (el.name === $modify.day) {
         el.hours[$modify.hour].desc = $modify.desc;
         el.hours[$modify.hour].uri = $modify.uri;
+        el.hours[$modify.hour].bg = $modify.bg;
       }
       return el;
     });
     window.localStorage.data = JSON.stringify(updatedData);
     $data = updatedData;
     exitModify();
+  }
+
+  function handleSelect(e) {
+    $modify.bg = e.target.value;
   }
 
   document.onkeyup = (e) => e.key === "Escape" && exitModify();
@@ -80,12 +86,15 @@
     width: 90%;
   }
 
+  select {
+    appearance: none;
+  }
+
   button {
     width: 50%;
     margin: auto;
     cursor: pointer;
   }
-
 </style>
 
 {#if $modify}
@@ -103,6 +112,17 @@
           value={$modify.uri}
           placeholder="Enter URI"
           on:keyup={uriHandler} />
+        <select class="select-bg" style={`background-color: ${$modify.bg};`}>
+          {#each _COLORS as color}
+            <option
+              on:click={handleSelect}
+              selected={$modify.bg == color}
+              value={color}
+              style={`background-color: ${color};`}>
+              {color.toUpperCase()}
+            </option>
+          {/each}
+        </select>
         <button on:click={handleApply}>Apply</button>
       </div>
     </div>
