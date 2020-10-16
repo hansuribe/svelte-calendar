@@ -1,39 +1,32 @@
 const data = JSON.parse(localStorage.getItem("data"));
-const columnDelimiter = ",";
-const lineDelimiter = "\n";
-
-let days = [];
-
-// [{name, hours: { desc, bg }}]
+import { ExportToCsv } from "export-to-csv";
 
 export default function exportToCsv() {
   if (data == null || !data.length) return null;
 
   data.forEach((day) => createDayData(day));
-
-  let i = 0;
-  days.forEach((dayCsv) => {
-    dayCsv = "data:text/csv;charset=utf-8," + dayCsv;
-
-    const a = document.createElement("a");
-    a.style.display = "none";
-    a.href = dayCsv;
-    a.download = data[i++].name + '.csv';
-    a.click();
-  });
 }
 
 function createDayData(day) {
-  const hoursKeys = Object.keys(day.hours);
-  let result = "";
+  let parsedDay = [];
 
-  result += ["hour", "desc"].join(columnDelimiter);
-  result += lineDelimiter;
+  Object.keys(day.hours).forEach((hour) => {
+    parsedDay.push({'hour': hour, ...day.hours[hour]})
+  })
 
-  hoursKeys.forEach((hour) => {
-    result += [hour, day.hours[hour].desc].join(columnDelimiter);
-    result += lineDelimiter;
-  });
+  const opts = {
+    fieldSeperator: ",",
+    filename: day.name,
+    quoteStrings: '"',
+    decimalSeparator: ".",
+    showLabels: true,
+    showTitle: true,
+    title: day.name,
+    useTextFile: false,
+    useBom: true,
+    useKeysAsHeaders: true,
+  };
 
-  days.push(result);
+  const csvExporter = new ExportToCsv(opts);
+  csvExporter.generateCsv(parsedDay);
 }
