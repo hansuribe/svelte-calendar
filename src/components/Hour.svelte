@@ -52,7 +52,7 @@
   }
 
   .hour-container:hover {
-    transition: 350ms ease-in;
+    transition: 350ms cubic-bezier(0.55, 0.055, 0.675, 0.19);
     opacity: 1;
     z-index: 1;
   }

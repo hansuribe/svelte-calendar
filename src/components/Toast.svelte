@@ -8,12 +8,11 @@
     position: absolute;
     z-index: 99;
     top: -25%;
-    left: -10%;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.8);
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgb(44, 149, 197);
     border-radius: 5px;
-    width: calc(100% + 2em);
+    width: 10em;
     height: 2em;
     display: flex;
     align-items: center;
