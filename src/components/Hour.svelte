@@ -3,6 +3,7 @@
     desc = "",
     bg = "whitesmoke",
     uri = "",
+    completed = 0, // There isn't any task
     onclick = () => "";
 
   import Toast from "./Toast.svelte";
@@ -66,16 +67,23 @@
   }
 
   .hour-time {
-    flex: 1;
+    margin: auto .3em;
   }
 
   .hour-desc {
-    flex: 3;
+    flex: 10;
     overflow: hidden;
     display: inline-block;
     white-space: nowrap;
     text-align: start;
     text-overflow: ellipsis;
+  }
+
+  input[type="checkbox"] {
+    margin: auto;
+    z-index: 99;
+    width: 2em;
+    height: 1em;
   }
 </style>
 
@@ -85,7 +93,14 @@
   on:mouseenter={() => (hover = true)}
   on:mouseleave={() => (hover = false)}
   on:click={clickHandler}>
+  {#if completed === 1 || completed === 2}
+  <input type="checkbox" property="1"/>
+  {/if}
   <Toast active={hover} content={uri} />
-  <p class="hour-time">{hour}</p>
-  <h3 class="hour-desc">{desc}</h3>
+  <h2 class="hour-time">{hour}:00</h2>
+  <h3
+    class="hour-desc"
+    style={`text-decoration ${completed === 2 ? 'line-through' : 'none'}`}>
+    {desc}
+  </h3>
 </div>
