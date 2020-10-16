@@ -31,7 +31,7 @@
   }
 
   a:hover {
-    color: blue;
+    color: rgb(208, 255, 0);
   }
 </style>
 

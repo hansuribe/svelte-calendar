@@ -26,8 +26,8 @@
       const fontSize = parseFloat(window.getComputedStyle(hourDesc).fontSize);
       const excWidth = fontSize * desc.length;
       const currentWidth = parseFloat(window.getComputedStyle(hourDiv).width);
-      const diff = excWidth - currentWidth;
-      const toAdd = (diff < 0) ? 0 : diff / 2;
+      const diff = (excWidth - currentWidth) / 2;
+      const toAdd = (diff < 100) ? 0 : diff;
       hourDiv.style.width = `calc(100% + ${toAdd}px)`;
     }
     
