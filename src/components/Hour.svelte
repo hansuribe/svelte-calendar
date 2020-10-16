@@ -7,13 +7,32 @@
     onclick = () => "";
 
   import Toast from "./Toast.svelte";
+
   $: hover = false;
+
+  let hourDiv, hourDesc;
 
   function clickHandler(e) {
     if (e.target.classList.contains("hour-container")) {
       window.scrollTo(0, 0);
       onclick({ hour, desc, bg, uri });
     }
+  }
+
+  function hoverHandler(hoverState) {
+    hover = hoverState;
+
+    if (hover === true && desc !== "") {
+      const fontSize = parseFloat(window.getComputedStyle(hourDesc).fontSize);
+      const excWidth = fontSize * desc.length;
+      const currentWidth = parseFloat(window.getComputedStyle(hourDiv).width);
+      const diff = excWidth - currentWidth;
+      const toAdd = (diff < 0) ? 0 : diff / 2;
+      hourDiv.style.width = `calc(100% + ${toAdd}px)`;
+    }
+    
+    else if (hover === false && desc !== "")
+      hourDiv.style.width = "100%";
   }
 </script>
 
@@ -26,13 +45,15 @@
     flex-direction: row;
     align-items: center;
     border-bottom: 1px solid black;
+    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.8);
     background-color: var(--bg);
     cursor: pointer;
     opacity: 0.8;
   }
 
   .hour-container:hover {
-    transition: 350ms ease-in-out;
+    transition: 350ms ease-in;
+    opacity: 1;
     z-index: 1;
   }
 
@@ -43,8 +64,6 @@
     left: 0;
     right: 0;
     bottom: 0;
-    width: inherit;
-    height: inherit;
     box-shadow: 1px 1px 10px 5px var(--bg);
     opacity: 1;
     animation: glow 1.5s ease-in-out infinite;
@@ -52,22 +71,18 @@
 
   @keyframes glow {
     0% {
-      box-shadow: 1px 1px 10px 5px var(--bg);
+      box-shadow: 1px 1px 7px 3px var(--bg);
     }
     50% {
-      box-shadow: 1px 1px 25px 15px var(--bg);
+      box-shadow: 1px 1px 15px 7px var(--bg);
     }
     100% {
-      box-shadow: 1px 1px 10px 5px var(--bg);
+      box-shadow: 1px 1px 7px 3px var(--bg);
     }
-  }
-
-  .hour-container:hover > .hour-desc {
-    white-space: normal;
   }
 
   .hour-time {
-    margin: auto .3em;
+    margin: auto 0.3em;
   }
 
   .hour-desc {
@@ -90,16 +105,18 @@
 <div
   class="hour-container"
   style="--bg:{bg}"
-  on:mouseenter={() => (hover = true)}
-  on:mouseleave={() => (hover = false)}
+  bind:this={hourDiv}
+  on:mouseenter={() => hoverHandler(true)}
+  on:mouseleave={() => hoverHandler(false)}
   on:click={clickHandler}>
   {#if completed === 1 || completed === 2}
-  <input type="checkbox" property="1"/>
+    <input type="checkbox" property="1" />
   {/if}
   <Toast active={hover} content={uri} />
   <h2 class="hour-time">{hour}:00</h2>
   <h3
     class="hour-desc"
+    bind:this={hourDesc}
     style={`text-decoration ${completed === 2 ? 'line-through' : 'none'}`}>
     {desc}
   </h3>
