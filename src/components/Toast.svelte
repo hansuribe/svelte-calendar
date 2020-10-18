@@ -1,7 +1,7 @@
 <script>
   export let active = false,
   content = "";
-  let src = "../../clipboard.png";
+  let src = "/clipboard.png";
   export function copyToClickBoard(content){
     var copyText = document.body.appendChild(document.createElement("input"));
     copyText.value = content;
@@ -38,14 +38,17 @@
     text-overflow: ellipsis;
   }
 
-  a:hover {
-    color: rgb(208, 255, 0);
+  .clipboard-image {
+    max-width: 30%;
+    max-height: 100%
   }
+
+
 </style>
 
 {#if active && content}
   <div class="toast-container">
     <a class="toast-content" href={content} target="_blank">{content}</a>
-    <img {src} alt="clickboard" on:click={copyToClickBoard(content)}>
+    <img class="clipboard-image" {src} alt="clickboard" on:click={copyToClickBoard(content)}>
   </div>
 {/if}
