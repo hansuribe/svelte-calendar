@@ -43,7 +43,10 @@
     }
     update($modify.day, $modify.hour, opts, exitModify);
   }
-
+  function clear(){
+    $modify.desc = "";
+    $modify.uri = "";
+  }
   function handleSelect(e) {
     $modify.bg = e.target.value;
   }
@@ -91,6 +94,12 @@
     margin: auto;
     cursor: pointer;
   }
+  button.clear{
+    background-color:#ff5353;
+  }
+  .btn-wrapper{
+    display: flex;
+  }
 </style>
 
 {#if $modify}
@@ -119,7 +128,10 @@
             </option>
           {/each}
         </select>
-        <button on:click={handleApply}>Apply</button>
+        <div class="btn-wrapper">
+          <button class="clear" on:click={clear}>Clear</button>
+          <button on:click={handleApply}>Apply</button>
+        </div>
       </div>
     </div>
   </div>
