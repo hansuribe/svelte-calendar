@@ -32,9 +32,13 @@
   .week {
     display: flex;
     flex-direction: row;
-    height: auto;
-    width: 100vw;
-    margin-top: 5em;
+    justify-content: flex-start;
+    width: calc(100% + 10vw);
+    margin-top: 7em;
+  }
+
+  .week:last-child {
+    margin-right: 10em;
   }
 
   @media only screen and (max-width: 1024px) {
