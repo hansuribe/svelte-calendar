@@ -40,12 +40,12 @@
       uri: $modify.desc ? $modify.uri : "",
       bg: $modify.desc ? $modify.bg : "whitesmoke",
       completed: $modify.desc ? 1 : 0,
-    }
+    };
     update($modify.day, $modify.hour, opts, exitModify);
   }
-  function clear(){
+  function clear() {
     $modify.desc = "";
-    $modify.uri = "";
+    handleApply();
   }
   function handleSelect(e) {
     $modify.bg = e.target.value;
@@ -94,10 +94,10 @@
     margin: auto;
     cursor: pointer;
   }
-  button.clear{
-    background-color:#ff5353;
+  button.clear {
+    background-color: var(--warning);
   }
-  .btn-wrapper{
+  .btn-wrapper {
     display: flex;
   }
 </style>

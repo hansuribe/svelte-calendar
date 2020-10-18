@@ -15,13 +15,7 @@
   let days;
   const unsubscribe = data.subscribe((value) => (days = value));
   onDestroy(unsubscribe);
-  // If bugs occur with parsing or stringify:
-  // - uncomment line 24
-  // - comment lines 25-27
-  // - npm run dev
-  // - comment line 21, uncomment rest
-  // - run again
-  // window.localStorage.removeItem("data");
+
   if (!window.localStorage.data)
     window.localStorage.data = JSON.stringify(days);
   days = JSON.parse(window.localStorage.data);
