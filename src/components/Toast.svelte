@@ -36,7 +36,7 @@
 </style>
 
 {#if active && content}
-  <div class="toastContainer">
-    <a class="toastContent" href={content} target="_blank">{content}</a>
+  <div class="toast-container">
+    <a class="toast-content" href={content} target="_blank">{content}</a>
   </div>
 {/if}
