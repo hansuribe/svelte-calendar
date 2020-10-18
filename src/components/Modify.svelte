@@ -1,6 +1,7 @@
 <script>
   import Hour from "./Hour.svelte";
-  import { modify, data } from "../stores.js";
+  import { modify } from "../stores.js";
+  import update from "../utils/updateData.js";
   import { _COLORS } from "../consts.js";
 
   // Exit Modify modal when clicking outside main div
@@ -34,18 +35,13 @@
   }
 
   function handleApply() {
-    let previousData = JSON.parse(window.localStorage.data);
-    let updatedData = previousData.filter((el) => {
-      if (el.name === $modify.day) {
-        el.hours[$modify.hour].desc = $modify.desc;
-        el.hours[$modify.hour].uri = $modify.uri;
-        el.hours[$modify.hour].bg = $modify.bg;
-      }
-      return el;
-    });
-    window.localStorage.data = JSON.stringify(updatedData);
-    $data = updatedData;
-    exitModify();
+    const opts = {
+      desc: $modify.desc,
+      uri: $modify.desc ? $modify.uri : "",
+      bg: $modify.desc ? $modify.bg : "whitesmoke",
+      completed: $modify.desc ? 1 : 0,
+    }
+    update($modify.day, $modify.hour, opts, exitModify);
   }
 
   function handleSelect(e) {

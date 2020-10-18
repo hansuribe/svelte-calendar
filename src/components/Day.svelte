@@ -1,14 +1,6 @@
 <script>
   import Hour from "./Hour.svelte";
-  import { modify } from "../stores.js";
   export let data;
-
-  // Called from an 'Hour.svelte' component.
-  // We stop here before activating 'Modify.svelte'
-  // so we can add the day (for database managment)
-  function hourHandler(toModify) {
-    $modify = { day: data.name, ...toModify };
-  }
 </script>
 
 <style>
@@ -31,10 +23,11 @@
   <h1>{data.name.toUpperCase()}</h1>
   {#each Object.keys(data.hours) as hour}
     <Hour
-      {hour}
+      hour={hour}
+      day={data.name}
       desc={data.hours[hour].desc}
       bg={data.hours[hour].bg}
       uri={data.hours[hour].uri}
-      onclick={hourHandler} />
+      completed={data.hours[hour].completed} />
   {/each}
 </div>

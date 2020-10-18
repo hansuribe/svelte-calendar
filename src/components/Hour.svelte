@@ -1,21 +1,24 @@
 <script>
-  export let hour = 1,
+  export let day = "sunday",
+    hour = 1,
     desc = "",
     bg = "whitesmoke",
     uri = "",
-    completed = 0, // There isn't any task
-    onclick = () => "";
+    completed = 0; // There isn't any task
 
   import Toast from "./Toast.svelte";
+  import { modify } from "../stores.js";
+  import update from "../utils/updateData.js";
 
   $: hover = false;
-
-  let hourDiv, hourDesc;
-
+  let hourDiv, hourDesc, checkboxInput;
   function clickHandler(e) {
     if (e.target.classList.contains("hour-container")) {
-      hourDiv.scrollIntoView({block: "start", behavior: "smooth"});
-      onclick({ hour, desc, bg, uri });
+      $modify = { day, hour, desc, bg, uri };
+      hourDiv.scrollIntoView({ block: "center", behavior: "smooth" });
+    } else if (e.target === checkboxInput) {
+      const checked = e.target.checked;
+      update(day, hour, { completed: checked ? 2 : 1 });
     }
   }
 
@@ -27,12 +30,9 @@
       const excWidth = fontSize * desc.length;
       const currentWidth = parseFloat(window.getComputedStyle(hourDiv).width);
       const diff = (excWidth - currentWidth) / 2;
-      const toAdd = (diff < 45) ? 0 : diff;
+      const toAdd = diff < 45 ? 0 : diff;
       hourDiv.style.width = `calc(100% + ${toAdd}px)`;
-    }
-    
-    else if (hover === false && desc !== "")
-      hourDiv.style.width = "100%";
+    } else if (hover === false && desc !== "") hourDiv.style.width = "100%";
   }
 </script>
 
@@ -110,7 +110,11 @@
   on:mouseleave={() => hoverHandler(false)}
   on:click={clickHandler}>
   {#if completed === 1 || completed === 2}
-    <input type="checkbox" property="1" />
+    <input
+      checked={completed === 2}
+      bind:this={checkboxInput}
+      type="checkbox"
+      property="1" />
   {/if}
   <Toast active={hover} content={uri} />
   <h2 class="hour-time">{hour}:00</h2>
