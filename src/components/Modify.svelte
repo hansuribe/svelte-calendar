@@ -65,7 +65,7 @@
   }
 
   .modify {
-    position: absolute;
+    position: fixed;
     width: 25em;
     height: auto;
     border-start-start-radius: 15px;

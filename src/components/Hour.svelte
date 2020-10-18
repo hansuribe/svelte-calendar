@@ -14,7 +14,7 @@
 
   function clickHandler(e) {
     if (e.target.classList.contains("hour-container")) {
-      window.scrollTo(0, 0);
+      hourDiv.scrollIntoView({block: "end", behavior: "smooth"});
       onclick({ hour, desc, bg, uri });
     }
   }
@@ -27,7 +27,7 @@
       const excWidth = fontSize * desc.length;
       const currentWidth = parseFloat(window.getComputedStyle(hourDiv).width);
       const diff = (excWidth - currentWidth) / 2;
-      const toAdd = (diff < 100) ? 0 : diff;
+      const toAdd = (diff < 45) ? 0 : diff;
       hourDiv.style.width = `calc(100% + ${toAdd}px)`;
     }
     
