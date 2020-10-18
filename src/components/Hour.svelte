@@ -48,7 +48,6 @@
     box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.8);
     background-color: var(--bg);
     cursor: pointer;
-    opacity: 0.8;
   }
 
   .hour-container:hover {

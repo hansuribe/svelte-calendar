@@ -1,5 +1,6 @@
 :root {
 	--primary: #0275d8;
+	--bg: rgb(35, 39, 54);
 }
 
 html, body {

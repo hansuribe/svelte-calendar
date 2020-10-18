@@ -26,7 +26,7 @@
     width: 100vw;
     height: 5em;
     transition: 500ms cubic-bezier(0.215, 0.610, 0.5, 1);
-    background-color: rgb(35, 39, 54);
+    background-color: var(--bg);
     box-shadow: 1px 1px 3px 3px rgba(0, 0, 0, 0.75);
   }
 

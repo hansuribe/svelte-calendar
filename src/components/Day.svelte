@@ -7,9 +7,15 @@
   .day {
     height: 100%;
     border: 1px solid black;
+    box-shadow: 1px 1px 1px 1px rgba(0,0,0, 0.75);
     margin: 0.2em;
     min-width: 20em;
     border-radius: 5px;
+    background: var(--bg);
+  }
+
+  h1 {
+    color: white;
   }
 
   @media only screen and (max-width: 1024px) {
