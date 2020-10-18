@@ -14,7 +14,7 @@
 
   function clickHandler(e) {
     if (e.target.classList.contains("hour-container")) {
-      hourDiv.scrollIntoView({block: "end", behavior: "smooth"});
+      hourDiv.scrollIntoView({block: "start", behavior: "smooth"});
       onclick({ hour, desc, bg, uri });
     }
   }
