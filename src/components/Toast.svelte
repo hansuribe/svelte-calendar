@@ -2,7 +2,7 @@
   export let active = false,
   content = "";
   let src = "/clipboard.png";
-  export function copyToClickBoard(content){
+  export function copyToClipBoard(content){
     var copyText = document.body.appendChild(document.createElement("input"));
     copyText.value = content;
     copyText.select();
@@ -49,6 +49,6 @@
 {#if active && content}
   <div class="toast-container">
     <a class="toast-content" href={content} target="_blank">{content}</a>
-    <img class="clipboard-image" {src} alt="clickboard" on:click={copyToClickBoard(content)}>
+    <img class="clipboard-image" {src} alt="copy to clipboard" on:click={copyToClipBoard(content)}>
   </div>
 {/if}
