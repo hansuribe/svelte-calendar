@@ -18,19 +18,21 @@
     top: -25%;
     left: 50%;
     transform: translateX(-50%);
-    background-color: rgb(44, 149, 197);
+    background-color: white;
     border-radius: 5px;
-    width: 10em;
-    height: 2em;
+    width: 20em;
+    height: 3em;
     display: flex;
+    justify-content: space-between;
     align-items: center;
   }
 
   a {
-    color: white;
+    color: dodgerblue;
     font-weight: bold;
     padding: 0.2em;
-    text-decoration: underline;
+    font-size: 1.2em;
+    text-decoration: none;
     overflow: hidden;
     display: inline-block;
     white-space: nowrap;
@@ -38,9 +40,15 @@
     text-overflow: ellipsis;
   }
 
+  a:hover {
+    text-decoration: underline;
+  }
+
+
   .clipboard-image {
+    position: static;
     max-width: 30%;
-    max-height: 100%
+    height: 100%;
   }
 
 
