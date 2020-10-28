@@ -1,19 +1,24 @@
 <script>
-  import exportToCsv from "../utils/csv.js";
+  import { exportToCsv } from "../utils/csv.js";
 
+  export let importHandler;
   let lastScrollOffset = 0;
   let navDiv;
 
-  document.addEventListener("scroll", () => {
-    let offset = window.pageYOffset || document.documentElement.scrollTop;
-    if (offset > lastScrollOffset) {
-      navDiv.style.top = "-100px";
-    } else {
-      navDiv.style.top = "0px";
-    }
+  document.addEventListener(
+    "scroll",
+    () => {
+      let offset = window.pageYOffset || document.documentElement.scrollTop;
+      if (offset > lastScrollOffset) {
+        navDiv.style.top = "-100px";
+      } else {
+        navDiv.style.top = "0px";
+      }
 
-    lastScrollOffset = offset <= 0 ? 0 : offset;
-  }, false);
+      lastScrollOffset = offset <= 0 ? 0 : offset;
+    },
+    false
+  );
 </script>
 
 <style>
@@ -25,7 +30,7 @@
     right: 0;
     width: 100vw;
     height: 5em;
-    transition: 500ms cubic-bezier(0.215, 0.610, 0.5, 1);
+    transition: 500ms cubic-bezier(0.215, 0.61, 0.5, 1);
     background-color: var(--bg);
     box-shadow: 1px 1px 3px 3px rgba(0, 0, 0, 0.75);
   }
@@ -46,6 +51,7 @@
     align-items: center;
     justify-content: space-around;
     background-color: orange;
+    margin-right: 1em;
     border-radius: 10px;
     width: 10em;
     transition: 200ms cubic-bezier(0.55, 0.055, 0.675, 0.19);
@@ -65,13 +71,13 @@
 
 <div class="nav" bind:this={navDiv}>
   <div class="items">
-    <div class="nav-item">
-      <img
-        class="csv"
-        on:click={exportToCsv}
-        alt="export_to_csv"
-        src="csv-file-format.png" />
+    <div class="nav-item" on:click={exportToCsv}>
+      <img class="csv" alt="export_to_csv" src="csv-file-format.png" />
       <h2 class="nav-label">Export</h2>
+    </div>
+    <div class="nav-item" on:click={importHandler}>
+      <img class="csv" alt="import_from_csv" src="csv-file-format.png" />
+      <h2 class="nav-label">Import</h2>
     </div>
   </div>
 </div>

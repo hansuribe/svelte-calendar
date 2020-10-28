@@ -1,7 +1,7 @@
 const data = JSON.parse(localStorage.getItem("data"));
 import { ExportToCsv } from "export-to-csv";
 
-export default function exportToCsv() {
+export function exportToCsv() {
   if (data == null || !data.length) return null;
 
   data.forEach((day) => createDayData(day));
@@ -29,4 +29,9 @@ function createDayData(day) {
 
   const csvExporter = new ExportToCsv(opts);
   csvExporter.generateCsv(parsedDay);
+}
+
+
+export function importCsv() {
+  return;
 }

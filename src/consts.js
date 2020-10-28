@@ -1,9 +1,13 @@
 const _COLORS = [
     "tomato",
     "orange",
+    "yellow",
+    "lime",
     "mediumseagreen",
     "slateblue",
+    "aqua",
     "violet",
+    "fuchsia",
     "whitesmoke",
 ]
 
