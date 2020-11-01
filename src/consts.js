@@ -11,6 +11,17 @@ const _COLORS = [
     "whitesmoke",
 ]
 
+const _DAYS = [
+    "sunday",
+    "monday",
+    "tuesday",
+    "wedensday",
+    "thursday",
+    "friday",
+    "saturday",
+]
+
 module.exports = {
     _COLORS,
+    _DAYS,
 }

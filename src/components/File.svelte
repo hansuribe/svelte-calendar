@@ -1,11 +1,22 @@
 <script>
-  let textArea, fileInput;
+  let templateList, fileInput;
+
+  import { saveFilesAsData } from "../utils/csv.js";
 
   export let importHandler = () => {};
 
   function clickHandler(e) {
     if (e.target.classList.contains("file-import") === false) {
       importHandler();
+    }
+  }
+
+  function uploadHandler(e) {
+    const con = confirm(
+      "Are you sure you want to continue? This will overide current templates"
+    );
+    if (con) {
+      saveFilesAsData(e.target.files);
     }
   }
 </script>
@@ -40,14 +51,21 @@
     justify-content: center;
   }
 
-  textarea {
-    height: 12em;
+  input {
+    border: none;
   }
 </style>
 
 <container id="file" on:click={clickHandler}>
   <div class="file-import">
-    <input bind:this={fileInput} type="file" name="files[]" multiple />
-    <textarea bind:this={textArea} />
+    <input
+      class="file-import"
+      on:change={uploadHandler}
+      bind:this={fileInput}
+      type="file"
+      name="files[]"
+      multiple
+      accept=".csv" />
+    <ul class="file-import" bind:this={templateList} />
   </div>
 </container>
