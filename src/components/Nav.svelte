@@ -55,7 +55,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
-    background-color: orange;
+    background-color: var(--btn);
     margin-right: 1em;
     border-radius: 10px;
     width: 10em;

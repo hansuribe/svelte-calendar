@@ -48,18 +48,46 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+  }
+
+  label {
+    width: 8em;
+    cursor: pointer;
+    padding: .8em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    border: 1px solid black;
+    border-radius: 15px;
+    background-color: var(--btn);
+    box-shadow: 1px 1px 1px 1px rgba(39, 39, 39, 0.6);
+  }
+
+  img {
+    object-fit: contain;
+  }
+  p {
+    font-size: 1.2em;
+    font-weight: bold;
   }
 
   input {
-    border: none;
+    display: none;
   }
 </style>
 
 <container id="file" on:click={clickHandler}>
   <div class="file-import">
+    <h1 class="file-import">
+      Template Manager
+    </h1>
+    <label for="file-upload" class="file-import">
+      <img class="file-import" alt="upload" src="upload.png"/><p class="file-import">Upload</p>
+    </label>
     <input
       class="file-import"
+      id="file-upload"
       on:change={uploadHandler}
       bind:this={fileInput}
       type="file"
