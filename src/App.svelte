@@ -2,13 +2,6 @@
   import Week from "./components/Week.svelte";
   import Nav from "./components/Nav.svelte";
   import Modify from "./components/Modify.svelte";
-  import File from "./components/File.svelte";
-
-  let file = false;
-
-  function importHandler() {
-    file = !file;
-  }
 </script>
 
 <style>
@@ -21,9 +14,6 @@
 
 <main>
   <Modify />
-  {#if file === true}
-    <File {importHandler} />
-  {/if}
-  <Nav {importHandler} />
+  <Nav />
   <Week />
 </main>

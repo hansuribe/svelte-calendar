@@ -1,10 +1,15 @@
 <script>
   import { exportToCsv } from "../utils/csv.js";
 
-  export let importHandler;
+  import File from "./File.svelte";
+
   let lastScrollOffset = 0;
   let navDiv;
+  let file;
 
+  function importHandler() {
+    file = !file;
+  }
   document.addEventListener(
     "scroll",
     () => {
@@ -81,3 +86,7 @@
     </div>
   </div>
 </div>
+
+{#if file}
+<File {importHandler} />
+{/if}

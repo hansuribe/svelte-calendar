@@ -1,24 +1,27 @@
 <script>
   let textArea, fileInput;
-  export let importHandler;
 
-  import { onMount, onDestroy } from "svelte";
+  export let importHandler = () => {};
 
-  onMount(() => {
-    setTimeout(() => {
-      document.addEventListener("click", (e) => {
-        if (e.target.id !== "file") importHandler();
-      });
-    }, 50);
-  });
-
-  onDestroy(() => {
-    document.removeEventListener("click", () => {});
-  });
+  function clickHandler(e) {
+    if (e.target.classList.contains("file-import") === false) {
+      importHandler();
+    }
+  }
 </script>
 
 <style>
   container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 999;
+  }
+  div {
     position: absolute;
     top: 0;
     left: 0;
@@ -42,7 +45,9 @@
   }
 </style>
 
-<container id="file">
-  <input bind:this={fileInput} type="file" name="files[]" multiple />
-  <textarea bind:this={textArea} />
+<container id="file" on:click={clickHandler}>
+  <div class="file-import">
+    <input bind:this={fileInput} type="file" name="files[]" multiple />
+    <textarea bind:this={textArea} />
+  </div>
 </container>
