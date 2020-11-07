@@ -1,5 +1,5 @@
-# Calender
-A simple svelte application to act as a weekly calender.
+# Weekly Calender
+A web application manager for a weekly schedule with various features.
 
 ## installation
 ```
